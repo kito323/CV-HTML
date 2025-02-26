@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.a4 {
+    width: 210mm;
+    height: 297mm;
+    background: white;
+    padding: 20mm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto; /* fixes width */
+    display: flex;
+    flex-direction: column;
+}
+
+.header, .note-section {
+    display: flex; /* main axis is row */
+    justify-content: space-between; /* main */
+    align-items: flex-end; /* cross */
+}
+
+.header {
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+h1 {
+    font-size: 34px;
+}
+
+.profile-pic, .note-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.profile-pic img, .note-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 10px;
+    margin-right: 10px;
+}
+
+.contact-links a {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 3px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-links img {
+    margin-right: 5px;
+    width: 12px;
+    height: 12px;
+}
+
+.section, .half-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.graph-single, .graph-flipper, .graph-front, .graph-back, .recommendation, .recommendation-front, .recommendation-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-single, .graph-flipper { /* has flex-center */
+    width: 100%;
+    /* border: 1px solid #ccc; */
+    border: none;
+    color: #888;
+    font-size: 14px;
+}
+
+.graph-single {
+    height: 320px;
+    align-items: flex-start;
+}
+
+.graph-flipper {
+    height: 350px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.graph-flipper.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.graph-front, .graph-back, .recommendation-front, .recommendation-back {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.graph-front, .graph-back {
+    width: 100%;
+    height: 100%;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.graph-back {
+    transform: rotateY(180deg);
+}
+
+.flip-button {
+    width: 70px;
+    height: 25px;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.half-section {
+    width: calc(50% - 5px);
+    margin-bottom: 5px;
+}
+
+.zoom-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.zoom-image {
+    transition: transform 0.1s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.recommendation { /* has flex-center */
+    width: 100%;
+    height: 100px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.recommendation a {
+    color: inherit;
+}
+
+.recommendation.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.recommendation-front, .recommendation-back { /* has flex-center and flipping properties*/
+    padding: 10px 15px;
+    flex-direction: column;
+}
+
+.recommendation-back {
+    transform: rotateY(180deg);
+}
+
+.recommendation .flip-button {
+    width: 25px;
+    color: inherit;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    background: none;
+    border: none;
+    border-radius: 50%; /* circle even when border is none */
+}
+
+.note-section {
+    flex-grow: 1;
+}
+.note-section p {
+    margin-bottom: 5px;
+}
+
+/* Scale the content for screen view */
+/* It might not be the best idea as when zoomed in from browser, some of the left side becomes inaccessible... */
+.scale-content {
+    transform: scale(1.67);
+    transform-origin: top center;
+}
+
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+    
+    .scale-content {
+        transform: none;
+    }
+
+    .a4 {
+        box-shadow: none;
+        page-break-after: avoid;
+    }
+
+    .graph-flipper .graph-back, .graph-flipper.is-flipped .graph-front, 
+    .recommendation .recommendation-back, .recommendation.is-flipped .recommendation-front {
+        display: none;
+    }
+
+    .graph-flipper .graph-front, .graph-flipper.is-flipped .graph-back, 
+    .recommendation .recommendation-front, .recommendation.is-flipped .recommendation-back {
+        display: block;
+    }
+
+    .flip-button {
+        display: none;
+    }
+}

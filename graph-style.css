@@ -1,0 +1,8 @@
+body {
+    margin: 0px;
+}
+
+.js-plotly-plot .plotly .modebar {
+    transform: scale(0.6666667);
+    right: -25;
+}

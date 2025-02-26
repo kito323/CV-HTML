@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock CV</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const zoomContainer = document.querySelector('.zoom-container');
+            const zoomImage = document.querySelector('.zoom-image');
+    
+            zoomContainer.addEventListener('mousemove', function(e) {
+                const rect = zoomContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const xPercent = x / rect.width * 100;
+                const yPercent = y / rect.height * 100;
+    
+                zoomImage.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+                zoomImage.style.transform = 'scale(3)';
+            });
+    
+            zoomContainer.addEventListener('mouseleave', function() {
+                zoomImage.style.transform = 'scale(1)';
+                zoomImage.style.transformOrigin = 'center center';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="a4 scale-content">
+        <div class="header">
+            <h1>Kristo Karl Aedma</h1>
+            <div style="display: flex; align-items: flex-end;">
+                <div class="contact-links">
+                    <a href="tel:+37256259681">
+                        📱 +372 5625 9681
+                    </a>
+                    <a href="mailto:kkaedma@gmail.com">
+                        📧 kkaedma@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/kristo-karl-aedma" target="_blank">
+                        <img src="linkedin-icon.png" alt="LinkedIn Icon"> kristo-karl-aedma
+                    </a>
+                    <a href="https://github.com/kito323" target="_blank">
+                        <img src="github-icon.png" alt="GitHub Icon"> kito323
+                    </a>
+                </div>
+                <div class="profile-pic">
+                    <img src="myProfilePicCropScaledown.jpg" alt="Profile Picture">
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div style="display: flex; justify-content: space-between;">
+                <h2>Education & Experiences</h2>
+                <button class="flip-button" onclick="document.querySelector('.graph-flipper').classList.toggle('is-flipped')">↺ Flip!</button>
+            </div>
+            <div class="graph-flipper">
+                <div class="graph-front">
+                    <iframe src="timeline.html"></iframe>
+                </div>
+                <div class="graph-back">
+                    <iframe src="timeline2.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; gap: 10px;">
+            <div class="half-section">
+                <h2>Skills & Tools</h2>
+                <div class="graph-single zoom-container">
+                    <img src="wordcloud.png" alt="Word Cloud" class="zoom-image">
+                </div>
+            </div>
+            <div class="half-section">
+                <h2>Recommendations</h2>
+                <div class="recommendation" style="background-color: #1f76b4c0;">
+                    <button class="flip-button" onclick="this.parentElement.classList.toggle('is-flipped')">↺</button>
+                    <div class="recommendation-front">
+                        Gitte Konradsen, PhD<br>Senior Director<br><a href="mailto:gtpe@novonordisk.com">gtpe@novonordisk.com</a>
+                    </div>
+                    <div class="recommendation-back">
+                        Company: Novo Nordisk<br>Relation: Former direct manager
+                    </div>
+                </div>
+                <div class="recommendation" style="background-color: #ff7e0ec0;">
+                    <button class="flip-button" onclick="this.parentElement.classList.toggle('is-flipped')">↺</button>
+                    <div class="recommendation-front">
+                        Tobias Kröpelin, PhD<br>Statistical Programming Specialist<br><a href="mailto:tkp@novonordisk.com">tkp@novonordisk.com</a>
+                    </div>
+                    <div class="recommendation-back">
+                        Company: Novo Nordisk<br>Relation: Collegue and MSc thesis supervisor
+                    </div>
+                </div>
+                <div class="recommendation" style="background-color: #2ca02cc0;">
+                    <button class="flip-button" onclick="this.parentElement.classList.toggle('is-flipped')">↺</button>
+                    <div class="recommendation-front">
+                        Argo Jõeleht, PhD<br>Seismology and Hydrogeology Professor<br><a href="mailto:argo.joeleht@ut.ee">argo.joeleht@ut.ee</a>
+                    </div>
+                    <div class="recommendation-back">
+                        Company: University of Tartu<br>Relation: BSc thesis supervisor
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="note-section" style="height: 100%;">
+            <div class="note-image">
+                <a href="https://www.qrcode-monkey.com/" target="_blank">
+                    <img src="qr-code.png" alt="Note Image">
+                </a>
+            </div>
+            <p style="font-size: 20px;">👈</p>
+            <p style="font-size: 10px;"><strong>N.B.</strong> This résumé is interactive — click to flip views, pan, zoom, toggle legend items, hover for details, and download as PNG. If it is not interactive (PDF/print version), scan or click the QR for the full version.</p>
+        </div>
+    </div>
+</body>
+</html>
