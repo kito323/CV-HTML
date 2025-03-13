@@ -52,7 +52,7 @@ h1 {
     flex-direction: column;
     align-items: flex-end;
     font-size: 10px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .contact-links a {
@@ -72,12 +72,12 @@ h1 {
 .section, .half-section {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 h2 {
     font-size: 18px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .graph-single, .graph-flipper, .graph-front, .graph-back, .recommendation, .recommendation-front, .recommendation-back {
