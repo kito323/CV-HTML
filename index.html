@@ -35,6 +35,30 @@
             }
         }
     </script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const useDefault = urlParams.get('default') === 'true';
+
+        // // Replace 'YOUR_API_KEY' with your actual API key from the geolocation service
+        // const apiKey = 'YOUR_API_KEY';
+        const apiUrl = `https://ipapi.co/json/`;
+        if (!useDefault) {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.continent_code == 'EU') {
+                        const location = data.region || data.country_name;
+                        const locationText = document.getElementById('location-text');
+                        locationText.innerHTML = `
+                            Passionate about data and programming, seeking opportunities in data science, analysis, ML, or related fields. Open to full-time, part-time, freelance, and internship positions near ${location}. Contact me!
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching location:', error);
+                });
+        }
+    </script>
 </head>
 <body>
     <div class="a4">
@@ -42,7 +66,7 @@
             <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 64%;">
                 <h1>Kristo Karl Aedma</h1>
                 <div>
-                    <p style="font-size: 12px;">
+                    <p id="location-text" style="font-size: 12px;">
                         Passionate about data and programming, seeking opportunities in data science, analysis, ML, or related fields. Open to full-time, part-time, freelance, and internship positions. Open to relocation in EU. Contact me!
                     </p>
                 </div>
