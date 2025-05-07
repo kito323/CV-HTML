@@ -65,6 +65,22 @@
             }
         });
     </script>
+    <script>
+        let currentSideIndex = 0;
+
+        function flipNextSide() {
+            const flipper = document.querySelector('.graph-flipper');
+            const sides = flipper.querySelectorAll('.graph-side');
+            const totalSides = sides.length;
+
+            // Reset current side
+            sides[currentSideIndex].style.transform = 'rotateY(180deg)';
+
+            // Move to the next side
+            currentSideIndex = (currentSideIndex + 1) % totalSides;
+            sides[currentSideIndex].style.transform = 'rotateY(0deg)';
+        }
+    </script>
 </head>
 <body>
     <div class="a4">
@@ -99,16 +115,20 @@
         <div class="section">
             <div style="display: flex; justify-content: space-between;">
                 <h2>Education & Experiences</h2>
-                <button class="flip-button" onclick="document.querySelector('.graph-flipper').classList.toggle('is-flipped')">↺ Flip!</button>
+                <button class="flip-button" onclick="flipNextSide()">↪ Next!</button>
             </div>
             <div class="graph-flipper">
-                <div class="graph-front">
+                <div class="graph-side graph-side1">
                     <div class="skeleton-loader"></div>
                     <iframe src="timeline.html" onload="hideSkeletonLoader(this)"></iframe>
                 </div>
-                <div class="graph-back">
+                <div class="graph-side graph-side2">
                     <div class="skeleton-loader"></div>
                     <iframe src="timeline2.html" onload="hideSkeletonLoader(this)"></iframe>
+                </div>
+                <div class="graph-side graph-side3">
+                    <div class="skeleton-loader"></div>
+                    <iframe src="timeline3.html" onload="hideSkeletonLoader(this)"></iframe>
                 </div>
             </div>
         </div>
@@ -159,7 +179,7 @@
                 </a>
             </div>
             <p style="font-size: 20px;">👈</p>
-            <p style="font-size: 10px;"><strong>N.B.</strong> This résumé is interactive — click to flip views, pan, zoom, toggle legend items, hover for details, and download as PNG. If it is not interactive (PDF/print version), scan or click the QR for the full version.</p>
+            <p style="font-size: 10px;"><strong>N.B.</strong> This résumé is interactive — click to flip views, pan, zoom, toggle legend items, hover for details, and download graphs as PNG. If it is not interactive (PDF/print version), scan or click the QR for the full version.</p>
         </div>
     </div>
 </body>
